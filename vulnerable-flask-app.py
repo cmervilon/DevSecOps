@@ -16,6 +16,7 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 def main_page():
     return "Hello welcome to DevSecOps Lab"
 
+
 @app.route("/user/<string:name>")
 def search_user(name):
     con = sqlite3.connect("test.db")
