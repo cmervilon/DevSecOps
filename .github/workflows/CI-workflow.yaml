@@ -43,7 +43,7 @@ jobs:
 
       - name: Push Image
         run: |
-          docker tag test_${{ github.run_number }}:v1 hashko/devsecopslab:v${{ github.run_number }}
+          docker tag test_${{ github.run_number }}:v1 chmerv/devsecopslab:v${{ github.run_number }}
           docker push chmerv/devsecopslab:v${{ github.run_number }}
 
       - name: Checkout the ENV Repo
@@ -55,7 +55,7 @@ jobs:
 
       - name: Set up YQ command
         run: |
-          wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64.tar.gz -O - | # sudo tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
+          wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64.tar.gz -O - | sudo tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
 
       #- name: Edit manifests in ENV repo
         # run: |
