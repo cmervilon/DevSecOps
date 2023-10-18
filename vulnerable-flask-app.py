@@ -30,6 +30,7 @@ def search_user(name):
     return jsonify(data=data),200
 
 
+
 @app.route("/welcome/<string:name>")
 def welcome(name):
     data="Welcome "+name
