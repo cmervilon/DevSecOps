@@ -31,7 +31,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Build image from Dockerfile
+      - name: Build image from DockerFile
         run: |
           docker build -t test_${{ github.run_number }}:v1 .
 
