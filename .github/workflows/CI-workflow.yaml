@@ -4,7 +4,7 @@ on:
     branches:
       - 'main'
     paths:
-      - "DockerFile"
+      - "Dockerfile"
       - "vulnerable-flask-app.py"
 jobs:
   scan:
@@ -31,7 +31,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Build image from DockerFile
+      - name: Build image from Dockerfile
         run: |
           docker build -t test_${{ github.run_number }}:v1 .
 
