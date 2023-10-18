@@ -57,9 +57,9 @@ jobs:
         run: |
           wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64.tar.gz -O - | sudo tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
 
-      - name: Edit manifests in ENV repo
-        run: |
-          yq eval -i '.spec.template.spec.containers[0].image = "cmervilon/DevSecOps:v${{ github.run_number }}"' ./kubernetes/deployment.yaml
+      #- name: Edit manifests in ENV repo
+        # run: |
+          # yq eval -i '.spec.template.spec.containers[0].image = "cmervilon/DevSecOps:v${{ github.run_number }}"' ./kubernetes/deployment.yaml
 
       - name: Commit and Push to ENV repo
         run: |
