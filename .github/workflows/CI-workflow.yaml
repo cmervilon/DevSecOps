@@ -4,7 +4,7 @@ on:
     branches:
       - 'main'
     paths:
-      - "Dockerfile"
+      - "DockerFile"
       - "vulnerable-flask-app.py"
 jobs:
   scan:
@@ -55,7 +55,7 @@ jobs:
 
       - name: Set up YQ command
         run: |
-          wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64.tar.gz -O - | sudo tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
+          wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64.tar.gz -O - | # sudo tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
 
       #- name: Edit manifests in ENV repo
         # run: |
