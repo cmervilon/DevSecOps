@@ -22,7 +22,7 @@ jobs:
           
 
       - name: Install dependencies 
-        run: 
+        run: |
           python -m pip install --upgrade pip
           python3 -m pip install semgrep
           if [ -f ./requirements.txt ]; then pip install -r ./requirements.txt; fi
@@ -32,7 +32,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build image from Dockerfile
-        run: 
+        run: |
           docker build -t test_${{ github.run_number }}:v1 .
 
       - name: Login to Docker Hub
@@ -42,7 +42,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Image
-        run: 
+        run: |
           docker tag test_${{ github.run_number }}:v1 hashko/devsecopslab:v${{ github.run_number }}
           docker push chmerv/devsecopslab:v${{ github.run_number }}
 
@@ -54,16 +54,16 @@ jobs:
           token:  ${{ secrets.GITLEAKS}}
 
       - name: Set up YQ command
-        run: 
+        run: |
           wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64.tar.gz -O - | sudo tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
 
       - name: Edit manifests in ENV repo
-        run: 
+        run: |
           yq eval -i '.spec.template.spec.containers[0].image = "cmervilon/DevSecOps:v${{ github.run_number }}"' ./kubernetes/deployment.yaml
 
       - name: Commit and Push to ENV repo
-        run: 
+        run: |
           git config  user.email "cmervilon@gmail.com"
-          git config  user.name "${{cmervilon}}"
+          git config  user.name "cmervilon"
           git commit -a -m 'Env file is updated with the new image ${{ github.ref_name }}'
           git push https://${{ secrets.GITLEAKS }}@github.comchmerv/devsecopslab.git
