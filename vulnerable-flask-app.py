@@ -39,6 +39,7 @@ def welcome2(name):
     data="Welcome "+name
     return data
 
+
 @app.route("/hello")
 def hello_ssti():
     if request.args.get('name'):
